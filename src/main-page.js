@@ -28,7 +28,6 @@ const sidebar = (() => {
     // Dom elements
     const div = document.createElement('div');
     const header = document.createElement('h1');
-    const projectsList = document.createElement('ul');
 
     // Add classes to dom elements
     div.classList.add('sidebar');
@@ -38,7 +37,6 @@ const sidebar = (() => {
 
     // Add elements to div
     div.appendChild(header);
-    div.appendChild(projectsList);
     
     return {div, projectsList};
 })();
