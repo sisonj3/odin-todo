@@ -26,31 +26,32 @@ const header = (() => {
 //  Sidebar Module
 const sidebar = (() => {
     // Dom elements
-    const sidebarDiv = document.createElement('div');
-    const sidebarHeader = document.createElement('h1');
+    const div = document.createElement('div');
+    const header = document.createElement('h1');
+    const projectsList = document.createElement('ul');
 
     // Add classes to dom elements
-    sidebarDiv.classList.add('sidebar');
+    div.classList.add('sidebar');
 
     // Set text of h2
-    sidebarHeader.textContent = 'Projects';
+    header.textContent = 'Projects';
 
     // Add elements to div
-    sidebarDiv.appendChild(sidebarHeader);
-    // Append projects list to sidebarDiv
-
-    return sidebarDiv;
+    div.appendChild(header);
+    div.appendChild(projectsList);
+    
+    return {div, projectsList};
 })();
 
 //  Page Content Module
 //  Includes the sidebar
-const mainContent = (() => {
+const mainGrid = (() => {
     // Div used to make grid
     const contentGrid = document.createElement('div');
     contentGrid.classList.add('main-grid');
 
     // Add to grid
-    contentGrid.appendChild(sidebar);
+    contentGrid.appendChild(sidebar.div);
 
     return contentGrid;
 })();
@@ -59,7 +60,7 @@ const mainContent = (() => {
 // Add to body
 function generatePage() {
     document.body.appendChild(header);
-    document.body.appendChild(mainContent);
+    document.body.appendChild(mainGrid);
 }
 
 export default generatePage;
