@@ -1,9 +1,13 @@
+import projectFactory from './project';
+import { displayProjects } from './projects-dom';
+
 // Manages a list of projects
 
 // Factory function for project list
 const projectListFactory = () => {
     // Array to hold a list of projects
-    const projects = new Array();
+    // Starts with default all project
+    const projects = [projectFactory('All')];
 
     // Index of the current project
     let currentIndex = 0;
@@ -11,6 +15,10 @@ const projectListFactory = () => {
     // Function to add project
     function addProject (project) {
         projects.push(project);
+
+        // Update display
+        displayProjects(this);
+
     }
 
     // Function to remove project
@@ -20,6 +28,9 @@ const projectListFactory = () => {
                 projects.splice(i, 1);
             }
         }
+
+        // Update display
+        displayProjects(this);
     }
 
     function getProjectAtIndex(index) {
@@ -39,7 +50,8 @@ const projectListFactory = () => {
         return output;
     }
 
-    return {addProject, remProject, getProjectAtIndex, print};
+    return {addProject, remProject, getProjectAtIndex, print,
+        get length(){return projects.length;}};
 };
 
 export default projectListFactory;
