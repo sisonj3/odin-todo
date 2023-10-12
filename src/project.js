@@ -24,6 +24,8 @@ const projectFactory = (name) => {
             output += todo.print() + '\n';
         });
 
+        output += '\n';
+
         return output;
 
     }
