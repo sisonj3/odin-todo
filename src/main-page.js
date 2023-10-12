@@ -1,10 +1,7 @@
 import './style.css';
+import projectsDom from './projects-dom';
 
 // Module used to create the standard layout of the page
-
-//<div class="header">
-//    <h1>To-Do List</h1>
-//</div>
 
 //Dom Elements
 //  Header Module
@@ -37,8 +34,13 @@ const sidebar = (() => {
 
     // Add elements to div
     div.appendChild(header);
+    div.appendChild(projectsDom);
     
-    return {div, projectsList};
+    return div;
+})();
+
+const content = (() => {
+    
 })();
 
 //  Page Content Module
@@ -49,7 +51,7 @@ const mainGrid = (() => {
     contentGrid.classList.add('main-grid');
 
     // Add to grid
-    contentGrid.appendChild(sidebar.div);
+    contentGrid.appendChild(sidebar);
 
     return contentGrid;
 })();
