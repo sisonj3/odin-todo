@@ -28,7 +28,11 @@ const projectListFactory = () => {
         return projects[index];
     }
 
-    return {addProject, remProject, getProjectAtIndex};
+    function print() {
+        projects.forEach((project) => project.print());
+    }
+
+    return {addProject, remProject, getProjectAtIndex, print};
 };
 
 export default projectListFactory;
