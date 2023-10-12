@@ -1,6 +1,7 @@
 import projectList from './project-list';
+
 // Manages projects and todos
-const todoManager = (() => {
+const todoManager = () => {
     // Holds all projects
     const projects = projectList();
 
@@ -28,9 +29,11 @@ const todoManager = (() => {
     }
 
     function print(){
-        projects.print();
+        return projects.print();
     }
 
     return {addProject, addTodo, removeProject, removeTodo, print,
         set current(index){currentIndex = index}};
-})();
+};
+
+export default todoManager;

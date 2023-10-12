@@ -5,6 +5,9 @@ const projectListFactory = () => {
     // Array to hold a list of projects
     const projects = new Array();
 
+    // Index of the current project
+    let currentIndex = 0;
+
     // Function to add project
     function addProject (project) {
         projects.push(project);
@@ -29,7 +32,11 @@ const projectListFactory = () => {
     }
 
     function print() {
-        projects.forEach((project) => project.print());
+        let output = '';
+
+        projects.forEach((project) => output += project.print());
+
+        return output;
     }
 
     return {addProject, remProject, getProjectAtIndex, print};
