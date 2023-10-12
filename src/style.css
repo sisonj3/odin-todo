@@ -39,14 +39,27 @@ body {
 
 .sidebar h1 {
     font-size: 2rem;
-    margin: 5px;
+    margin: 10px;
+}
+
+.sidebar li {
+    list-style: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-left: 20px;
 }
 
 /* Generic stylings */
+.hidden {
+    transform: scale(0);
+}
+
 h1 {
     margin: 0;
 }
 
 ul {
     margin: 0;
+    padding: 0;
 }
