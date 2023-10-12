@@ -19,7 +19,16 @@ const projectListFactory = () => {
         }
     }
 
-    return {addProject, remProject};
+    function getProjectAtIndex(index) {
+        if(index >= projects.length || index < 0){
+            throw new Error('Index is out of bounds');
+            return;
+        }
+
+        return projects[index];
+    }
+
+    return {addProject, remProject, getProjectAtIndex};
 };
 
 export default projectListFactory;
