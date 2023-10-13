@@ -5,6 +5,7 @@ const projectFactory = (name) => {
 
     // Function to add todo item to project
     function addTodo (todoItem) {
+        todoItem.project = name;
         project.push(todoItem);
     }
 
