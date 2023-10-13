@@ -1,5 +1,6 @@
 import editIcon from './note-edit.svg';
 import plusIcon from './plus.svg';
+import format from "date-fns/format/index.js";
 
 // Div to hold all todos
 const todoListDom = document.createElement('div');
@@ -73,6 +74,54 @@ function checked(container){
 
 function showDetails(todo){
     console.log('Showing Details')
+
+    // Dom elements
+    const overlay = document.createElement('div');
+    const infoBox = document.createElement('div');
+    const closeDiv = document.createElement('div');
+    const closeIcon = document.createElement('img');
+    const title = document.createElement('div');
+    const projectName = document.createElement('div');
+    const priority = document.createElement('div');
+    const dueDate = document.createElement('div');
+    const details = document.createElement('div');
+
+    // Text content
+    title.textContent = todo.title;
+    projectName.textContent = `Project: ${todo.project}`;
+    priority.textContent = `Priority: ${todo.priority}`;
+    dueDate.textContent = `Due Date: ${todo.dueDate}`;
+    details.textContent = `Details: ${todo.desc}`;
+
+    // Close icon
+    closeIcon.src = plusIcon;
+    closeIcon.alt = 'X';
+
+    // Classes
+    overlay.classList.add('overlay');
+    infoBox.classList.add('details');
+    closeDiv.classList.add('close-icon');
+    closeIcon.classList.add('delete');
+    title.classList.add('title');
+
+    // Add to infoBox
+    closeDiv.appendChild(closeIcon);
+    infoBox.appendChild(closeDiv);
+    infoBox.appendChild(title);
+    infoBox.appendChild(projectName);
+    infoBox.appendChild(priority);
+    infoBox.appendChild(dueDate);
+    infoBox.appendChild(details);
+
+    // Add to body
+    document.body.appendChild(overlay);
+    document.body.appendChild(infoBox);
+
+    // Remove from body when closed
+    closeIcon.addEventListener('click', () => {
+        document.body.removeChild(overlay);
+        document.body.removeChild(infoBox);
+    });
 }
 
 function deleteTodo(project, index) {
