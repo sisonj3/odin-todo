@@ -1,12 +1,12 @@
 :root {
     --bittersweet: #ff5e5b;
     --timberwolf: #d8d8d8;
-    --ivory: #ffffea;
+    --licorice: #220C10;
     --robin-egg-blue: #00cecb;
     --maize: #ffed66;
 
     background-color: var(--timberwolf);
-    color: white;
+    color: var(--licorice);
     font-size: clamp(0.5rem, 1vw, 1rem);
 }
 
@@ -50,9 +50,60 @@ body {
     margin-left: 20px;
 }
 
+/* Todo List Stylings */
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.todo-container {
+    background-color: var(--maize);
+    color: var(--licorice);
+
+    display: flex;
+    align-items: center;
+
+    gap: 1rem;
+    font-size: 2rem;
+    padding: 1rem 2rem;
+}
+
+.todo-checkbox {
+    background-color: var(--timberwolf);
+    height: 2rem;
+    width: 2rem;
+}
+
+.todo-title {
+    margin-right: auto;
+}
+
+.todo-date {
+    font-size: 1.5rem;
+}
+
+.todo-details {
+    color: var(--bittersweet);
+    border: 1px solid var(--bittersweet);
+    border-radius: 10px;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+}
+
 /* Generic stylings */
 .hidden {
     transform: scale(0);
+}
+
+.delete {
+    transform: rotate(45deg);
+}
+
+img {
+    height: auto;
+    width: 2rem;
 }
 
 h1 {
