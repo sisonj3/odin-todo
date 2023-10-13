@@ -14,6 +14,9 @@ function displayTodos(project) {
     }
 
     for(let i = 0; i < project.length; i++){
+        // Current todo item
+        const todo = project.getTodoAtIndex(i);
+
         // Dom elements
         const todoDom = document.createElement('div');
         const todoCheckbox = document.createElement('div');
@@ -33,9 +36,9 @@ function displayTodos(project) {
         todoDelete.classList.add('delete');
 
         // Set text contents
-        todoTitle.textContent = project.getTodoAtIndex(i).title;
+        todoTitle.textContent = todo.title;
         todoDetails.textContent = 'Details';
-        todoDate.textContent = project.getTodoAtIndex(i).dueDate;
+        todoDate.textContent = todo.dueDate;
 
         // Set images
         todoEdit.src = editIcon;
@@ -56,7 +59,7 @@ function displayTodos(project) {
 
         // Event listeners
         todoCheckbox.addEventListener('click', () => checked(todoDom));
-        todoDetails.addEventListener('click', () => console.log('Details clicked'));
+        todoDetails.addEventListener('click', () => showDetails(todo));
         todoEdit.addEventListener('click', () => console.log('Editing'));
         todoDelete.addEventListener('click', () => deleteTodo(project, i));
     }
@@ -66,6 +69,10 @@ function checked(container){
     let children = Array.from(container.childNodes);
 
     children.forEach(node => node.classList.toggle('checked'));
+}
+
+function showDetails(todo){
+    console.log('Showing Details')
 }
 
 function deleteTodo(project, index) {
