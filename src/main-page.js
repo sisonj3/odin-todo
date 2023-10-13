@@ -1,5 +1,6 @@
 import './style.css';
 import projectsDom from './projects-dom';
+import todoDom from './todo-dom';
 
 // Module used to create the standard layout of the page
 
@@ -39,10 +40,6 @@ const sidebar = (() => {
     return div;
 })();
 
-const content = (() => {
-    
-})();
-
 //  Page Content Module
 //  Includes the sidebar
 const mainGrid = (() => {
@@ -52,6 +49,7 @@ const mainGrid = (() => {
 
     // Add to grid
     contentGrid.appendChild(sidebar);
+    contentGrid.appendChild(todoDom);
 
     return contentGrid;
 })();
