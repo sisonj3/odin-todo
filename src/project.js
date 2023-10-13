@@ -40,7 +40,8 @@ const projectFactory = (name) => {
 
     }
 
-    return {name, addTodo, remTodo, getTodoAtIndex, print};
+    return {name, addTodo, remTodo, getTodoAtIndex, print,
+        get length(){return project.length}};
 };
 
 export default projectFactory;
