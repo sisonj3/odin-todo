@@ -55,11 +55,17 @@ function displayTodos(project) {
         todoListDom.appendChild(todoDom);
 
         // Event listeners
-        todoCheckbox.addEventListener('click', () => console.log('Checked'));
+        todoCheckbox.addEventListener('click', () => checked(todoDom));
         todoDetails.addEventListener('click', () => console.log('Details clicked'));
         todoEdit.addEventListener('click', () => console.log('Editing'));
         todoDelete.addEventListener('click', () => deleteTodo(project, i));
     }
+}
+
+function checked(container){
+    let children = Array.from(container.childNodes);
+
+    children.forEach(node => node.classList.toggle('checked'));
 }
 
 function deleteTodo(project, index) {
