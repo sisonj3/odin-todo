@@ -76,8 +76,18 @@ body {
     width: 2rem;
 }
 
+.todo-checkbox.checked {
+    background: url(./checked.svg), var(--bittersweet);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 .todo-title {
     margin-right: auto;
+}
+
+.todo-title.checked {
+    text-decoration: line-through;
 }
 
 .todo-date {
@@ -92,7 +102,15 @@ body {
     padding: 0.5rem;
 }
 
+.todo-container img {
+    color: var(--licorice);
+}
+
 /* Generic stylings */
+.checked {
+    opacity: 0.5;
+}
+
 .hidden {
     transform: scale(0);
 }
