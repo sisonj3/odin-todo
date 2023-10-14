@@ -18,10 +18,9 @@ function displayProjects (projectList) {
         const projectDom = document.createElement('li');
 
         projectDom.textContent = projectList.getProjectAtIndex(i).name;
-        projectDom.dataset.index = i;
-
+        
         // When clicked display todos from that project
-        projectDom.addEventListener('click', (e) => displayTodos(projectList.getProjectAtIndex(e.target.dataset.index)));
+        projectDom.addEventListener('click', () => displayTodos(projectList.getProjectAtIndex(i), i));
 
         projectsListDom.appendChild(projectDom);
     }

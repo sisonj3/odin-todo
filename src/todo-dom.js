@@ -6,7 +6,11 @@ import format from "date-fns/format/index.js";
 const todoListDom = document.createElement('div');
 todoListDom.classList.add('todo-list');
 
-function displayTodos(project) {
+function displayTodos(project, index) {
+
+    // Set current project being displayed
+    document.body.dataset.project = project.name;
+    document.body.dataset.index = index;
 
     // Clear project list dom
     // Remove all children from body
@@ -39,7 +43,7 @@ function displayTodos(project) {
         // Set text contents
         todoTitle.textContent = todo.title;
         todoDetails.textContent = 'Details';
-        todoDate.textContent = todo.dueDate;
+        todoDate.textContent = format(todo.dueDate, 'MM-dd-yyyy');
 
         // Set images
         todoEdit.src = editIcon;
@@ -61,7 +65,7 @@ function displayTodos(project) {
         // Event listeners
         todoCheckbox.addEventListener('click', () => checked(todoDom));
         todoDetails.addEventListener('click', () => showDetails(todo));
-        todoEdit.addEventListener('click', () => console.log('Editing'));
+        todoEdit.addEventListener('click', () => editTodo(todo, todoTitle, todoDate));
         todoDelete.addEventListener('click', () => deleteTodo(project, i));
     }
 }
@@ -90,7 +94,7 @@ function showDetails(todo){
     title.textContent = todo.title;
     projectName.textContent = `Project: ${todo.project}`;
     priority.textContent = `Priority: ${todo.priority}`;
-    dueDate.textContent = `Due Date: ${todo.dueDate}`;
+    dueDate.textContent = `Due Date: ${format(todo.dueDate, 'MM-dd-yyyy')}`;
     details.textContent = `Details: ${todo.desc}`;
 
     // Close icon
@@ -124,9 +128,129 @@ function showDetails(todo){
     });
 }
 
+function editTodo(todo, todoTitle, todoDate) {
+    console.log('Editing')
+
+    // Dom Elements
+    const overlay = document.createElement('div');
+    const editBox = document.createElement('div');
+    const closeDiv = document.createElement('div');
+    const closeIcon = document.createElement('img');
+    const textDiv = document.createElement('div');
+    const editTitle = document.createElement('textarea');
+    const editDesc = document.createElement('textarea');
+    const dateDiv = document.createElement('div');
+    const dueDateText = document.createElement('div');
+    const editDate = document.createElement('input');
+    const priorityDiv = document.createElement('div');
+    const priorityText = document.createElement('div');
+    const editPriority = document.createElement('select');
+    const confirmDiv = document.createElement('div');
+    const confirmBtn = document.createElement('div');
+
+    // Character Limits
+    editTitle.maxLength = 30;
+    editDesc.maxLength = 90;
+
+    // Input type
+    editDate.type = 'date';
+
+    // Set current date of todo item
+    editDate.valueAsDate = todo.dueDate;
+
+    // Priority options
+    const low = document.createElement('option');
+    const med = document.createElement('option'); 
+    const high = document.createElement('option');
+
+    // Priority options text
+    low.text = 'Low';
+    med.text = 'Medium';
+    high.text = 'High';
+
+    // Add options to select
+    editPriority.add(low);
+    editPriority.add(med);
+    editPriority.add(high);
+
+    // Set pre-selected option
+    editPriority.value = todo.priority;
+
+    // Close icon
+    closeIcon.src = plusIcon;
+    closeIcon.alt = 'X';
+
+    // Classes
+    overlay.classList.add('overlay');
+    editBox.classList.add('details');
+    closeDiv.classList.add('icon-div');
+    closeIcon.classList.add('delete');
+    textDiv.classList.add('text-div');
+    editTitle.classList.add('edit-title');
+    editDesc.classList.add('edit-desc');
+    dateDiv.classList.add('edit-div');
+    priorityDiv.classList.add('edit-div');
+    confirmDiv.classList.add('icon-div');
+    confirmBtn.classList.add('confirm-btn');
+
+    // Set content to current information
+    editTitle.textContent = todo.title;
+    editDesc.textContent = todo.desc;
+    dueDateText.textContent = 'Due Date: ';
+    priorityText.textContent = 'Priority: ';
+    confirmBtn.textContent = 'Confirm Edit';
+
+    // Add to editBox
+    closeDiv.appendChild(closeIcon);
+    editBox.appendChild(closeDiv);
+
+    textDiv.appendChild(editTitle);
+    textDiv.appendChild(editDesc);
+    editBox.appendChild(textDiv);
+
+    dateDiv.appendChild(dueDateText);
+    dateDiv.appendChild(editDate);
+    editBox.appendChild(dateDiv);
+
+    priorityDiv.appendChild(priorityText);
+    priorityDiv.appendChild(editPriority);
+    editBox.appendChild(priorityDiv);
+
+    confirmDiv.appendChild(confirmBtn)
+    editBox.appendChild(confirmDiv);
+
+    // Add to body
+    document.body.appendChild(overlay);
+    document.body.appendChild(editBox);
+
+    // Remove from body when closed
+    closeIcon.addEventListener('click', () => {
+        document.body.removeChild(overlay);
+        document.body.removeChild(editBox);
+    });
+
+    // Set info to new info
+    confirmBtn.addEventListener('click', () => {
+        console.log('Confirmed');
+        // Title
+        todoTitle.textContent = editTitle.value;
+        todo.title = editTitle.value;
+
+        // Desc
+        todo.desc = editDesc.value;
+
+        // Date
+        todo.dueDate = editDate.valueAsDate;
+        todoDate.textContent = format(todo.dueDate, 'MM-dd-yyyy')
+
+        // Priority
+        todo.priority = editPriority.value;
+    });
+
+}
+
 function deleteTodo(project, index) {
     project.remTodo(project.getTodoAtIndex(index));
-    displayTodos(project);
 }
 
 export {displayTodos};

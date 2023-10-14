@@ -9,11 +9,9 @@ const projectListFactory = () => {
     // Starts with default all project
     const projects = [projectFactory('All')];
 
-    // Index of the current project
-    let currentIndex = 0;
-
     // Function to add project
     function addProject (project) {
+        updateAll();
         projects.push(project);
 
         // Update display
@@ -23,6 +21,7 @@ const projectListFactory = () => {
 
     // Function to remove project
     function remProject (project) {
+        updateAll();
         for (let i = 0; i < projects.length; i++) {
             if(projects[i] == project){
                 projects.splice(i, 1);
@@ -42,6 +41,19 @@ const projectListFactory = () => {
         return projects[index];
     }
 
+    function updateAll(){
+        // Clear All
+        while(projects[0].length > 0){
+            projects[0].remTodo(projects[0].getTodoAtIndex(projects[0].length - 1));
+        }
+
+        for(let i = 1; i < projects.length; i++){
+            for(let j = 0; j < projects[i].length; j++){
+                projects[0].addTodo(projects[i].getTodoAtIndex(j));
+            }
+        }
+    }
+
     function print() {
         let output = '';
 
@@ -50,7 +62,7 @@ const projectListFactory = () => {
         return output;
     }
 
-    return {addProject, remProject, getProjectAtIndex, print,
+    return {addProject, remProject, getProjectAtIndex, updateAll, print,
         get length(){return projects.length;}};
 };
 

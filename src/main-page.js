@@ -1,6 +1,7 @@
 import './style.css';
 import projectsDom from './projects-dom';
 import todoDom from './todo-dom';
+import addBtn from './add-dom';
 
 // Module used to create the standard layout of the page
 
@@ -57,8 +58,12 @@ const mainGrid = (() => {
 
 // Add to body
 function generatePage() {
+    // Default project index
+    document.body.dataset.project = 0;
+
     document.body.appendChild(header);
     document.body.appendChild(mainGrid);
+    document.body.appendChild(addBtn);
 }
 
 export default generatePage;

@@ -1,3 +1,5 @@
+import { displayTodos } from "./todo-dom";
+
 // Factory function for a project
 const projectFactory = (name) => {
     // A project holds an array of todo-items
@@ -5,8 +7,14 @@ const projectFactory = (name) => {
 
     // Function to add todo item to project
     function addTodo (todoItem) {
-        todoItem.project = name;
         project.push(todoItem);
+        if(todoItem.project == ''){
+            todoItem.project = name;   
+        }
+
+        if(document.body.dataset.project == name){
+            displayTodos(this);
+        }
     }
 
     // Function to remove todo item from project
@@ -15,6 +23,10 @@ const projectFactory = (name) => {
             if(project[i] == todoItem){
                 project.splice(i, 1);
             }
+        }
+
+        if(document.body.dataset.project == name){
+            displayTodos(this);
         }
     }
 
