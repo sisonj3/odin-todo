@@ -33,7 +33,7 @@ const projectFactory = (name) => {
     // Function to get a todo item from index
     function getTodoAtIndex(index) {
         if(index >= project.length || index < 0){
-            throw new Error('Index is out of bounds');
+            console.log('Index is out of bounds');
             return;
         }
 
