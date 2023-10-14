@@ -22,13 +22,13 @@ const projectListFactory = () => {
 
     // Function to remove project
     function remProject (project) {
-        updateAll();
         for (let i = 0; i < projects.length; i++) {
             if(projects[i] == project){
                 projects.splice(i, 1);
             }
         }
 
+        updateAll();
         // Update display
         displayProjects(this);
     }

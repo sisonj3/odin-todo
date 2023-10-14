@@ -1,4 +1,5 @@
 import {displayTodos} from './todo-dom';
+import plusIcon from './plus.svg';
 
 // Sets up the list of project in the sidebar
 
@@ -20,9 +21,24 @@ function displayProjects (projectList) {
 
     for (let i = 0; i < projectList.length; i++){
         const projectDom = document.createElement('li');
-
-        projectDom.textContent = projectList.getProjectAtIndex(i).name;
+        const currentProject = projectList.getProjectAtIndex(i);
+ 
+        projectDom.textContent = currentProject.name;
         
+        if(i > 0){
+            const deleteBtn = document.createElement('img');
+            deleteBtn.classList.add('delete');
+            deleteBtn.src = plusIcon;
+            projectDom.appendChild(deleteBtn);
+
+            deleteBtn.addEventListener('click', () => {
+                console.log('Deleting project');
+                projectList.remProject(currentProject);
+                displayProjects(projectList);
+            });
+        }
+        
+
         // When clicked display todos from that project
         projectDom.addEventListener('click', () => displayTodos(projectList.getProjectAtIndex(i), i));
 
