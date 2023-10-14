@@ -14,6 +14,10 @@ function displayProjects (projectList) {
         projectsListDom.removeChild(projectsListDom.lastChild);
     }
 
+    if(projectList.length === undefined){
+        return;
+    }
+
     for (let i = 0; i < projectList.length; i++){
         const projectDom = document.createElement('li');
 
