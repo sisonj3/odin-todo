@@ -200,6 +200,19 @@ body {
     padding: .5rem;
 }
 
+/* Priority Stylings */
+.Low {
+    border-left: 5px solid green;
+}
+
+.Medium {
+    border-left: 5px solid yellow;
+}
+
+.High {
+    border-left: 5px solid red;
+}
+
 /* Generic stylings */
 .icon-div {
     display: flex;

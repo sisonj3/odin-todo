@@ -58,9 +58,6 @@ const mainGrid = (() => {
 
 // Add to body
 function generatePage() {
-    // Default project index
-    document.body.dataset.project = 0;
-
     document.body.appendChild(header);
     document.body.appendChild(mainGrid);
     document.body.appendChild(addBtn);

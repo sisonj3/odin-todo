@@ -33,6 +33,7 @@ function displayTodos(project, index) {
 
         // Classes
         todoDom.classList.add('todo-container');
+        todoDom.classList.add(todo.priority);
         todoCheckbox.classList.add('todo-checkbox');
         todoTitle.classList.add('todo-title');
         todoDetails.classList.add('todo-details');
@@ -65,7 +66,7 @@ function displayTodos(project, index) {
         // Event listeners
         todoCheckbox.addEventListener('click', () => checked(todoDom));
         todoDetails.addEventListener('click', () => showDetails(todo));
-        todoEdit.addEventListener('click', () => editTodo(todo, todoTitle, todoDate));
+        todoEdit.addEventListener('click', () => editTodo(todo, todoTitle, todoDate, todoDom));
         todoDelete.addEventListener('click', () => deleteTodo(project, i));
     }
 }
@@ -128,7 +129,7 @@ function showDetails(todo){
     });
 }
 
-function editTodo(todo, todoTitle, todoDate) {
+function editTodo(todo, todoTitle, todoDate, todoDom) {
     console.log('Editing')
 
     // Dom Elements
@@ -243,8 +244,14 @@ function editTodo(todo, todoTitle, todoDate) {
         todo.dueDate = editDate.valueAsDate;
         todoDate.textContent = format(todo.dueDate, 'MM-dd-yyyy')
 
+        // Clear todoDom priority classes if any
+        todoDom.classList.remove('Low');
+        todoDom.classList.remove('Medium');
+        todoDom.classList.remove('High');
+
         // Priority
         todo.priority = editPriority.value;
+        todoDom.classList.add(editPriority.value);
     });
 
 }

@@ -2,7 +2,7 @@ import todoFactory from './todo-item';
 import projectFactory from './project';
 import todoManager from './todo-manager';
 import projectListFactory from './project-list';
-import { displayProjects } from './projects-dom';
+import { displayTodos } from './todo-dom';
 import generatePage from './main-page';
 
 generatePage();
@@ -25,6 +25,8 @@ all.addTodo(todo3);
 all.addTodo(todo4);
 console.log(list.print());
 
+// Start by displaying all
 list.updateAll();
+displayTodos(list.getProjectAtIndex(0), 0);
 
 export default list;
