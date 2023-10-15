@@ -12,9 +12,10 @@ const projectListFactory = () => {
 
     // Function to add project
     function addProject (project) {
-        updateAll();
+        
         projects.push(project);
 
+        updateAll();
         // Update display
         displayProjects(this);
 
